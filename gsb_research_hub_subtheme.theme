@@ -85,7 +85,7 @@ function gsb_research_hub_subtheme_preprocess_field(&$variables) {
 function gsb_research_hub_subtheme_views_pre_render(&$view) {
   if ($view->id() === 'taxonomy_term_pages' && $view->current_display == 'people_terms') {
     $rows = $view->result;
-  
+
     $newSort = array();
     foreach ($rows as $key => $row) {
       $personInfo = $row->_relationship_entities['reverse__node__su_person_type_group'];
@@ -106,7 +106,7 @@ function gsb_research_hub_subtheme_views_pre_render(&$view) {
     $name = array_column($newSort, 'name');
     $type = array_column($newSort, 'type');
     array_multisort($type, SORT_ASC, $name, SORT_ASC, $newSort);
-    
+
     foreach ($newSort as $key => $sortRow) {
       $view->result[$sortRow['key']]->index = $key;
     }
